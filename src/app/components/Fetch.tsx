@@ -4,9 +4,17 @@ import axios from "axios";
 import Image from "next/image";
 import { FaPlus } from "react-icons/fa6";
 
-const Fetch= () => {
-  const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState(""); 
+// Define a Product interface for the shape of product data
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  images: string[]; // Assuming `images` is an array of image URLs
+}
+
+const Fetch = () => {
+  const [products, setProducts] = useState<Product[]>([]); // Type products as an array of Product
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
@@ -19,16 +27,17 @@ const Fetch= () => {
       });
   }, []);
 
- 
+  // Filter products based on the search term
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(search.toLowerCase())
   );
-  const sanitizeUrl = (url) => {
+
+  const sanitizeUrl = (url: string) => {
     // Check if the URL is non-empty and a valid string
-    if (url && typeof url === 'string' && url.trim() !== '') {
+    if (url && typeof url === "string" && url.trim() !== "") {
       return url; // Return the valid URL
     }
-    return null; // Return null if URL is invalid or empty
+    return "/default-image.jpg"; // Return default image if URL is invalid or empty
   };
 
   return (
@@ -43,13 +52,13 @@ const Fetch= () => {
             name="search"
             type="search"
             value={search}
-            onChange={(e) => setSearch(e.target.value)} 
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
       </div>
 
       {/* Products part */}
-      <div className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center">
         <div className="mt-5 max-w-6xl px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
             {filteredProducts.map((product) => (
@@ -58,14 +67,14 @@ const Fetch= () => {
                 className="rounded-lg flex flex-col items-center bg-white p-5"
               >
                 {/* Image */}
-                <div className="relative w-full h-52 mb-4 ">
-                <Image
-  src={sanitizeUrl(product.images?.[1]) || "/default-image.jpg"} // Use a fallback image if the URL is invalid or empty
-  alt={product.title}
-  layout="fill"
-  style={{ objectFit: "cover" }}
-  className="rounded-2xl"
-/>
+                <div className="relative w-full h-52 mb-4">
+                  <Image
+                    src={sanitizeUrl(product.images?.[1]) || "/default-image.jpg"}
+                    alt={product.title}
+                    layout="fill"
+                    style={{ objectFit: "cover" }}
+                    className="rounded-2xl"
+                  />
                   <span className="absolute top-2 right-2 text-black bg-white p-2 rounded-full cursor-pointer">
                     <FaPlus />
                   </span>

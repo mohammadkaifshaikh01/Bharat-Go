@@ -1,21 +1,26 @@
-"use client"
-import Link from "next/link";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { FaShoppingCart } from "react-icons/fa";
+"use client";
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { FaPlus } from "react-icons/fa6";
 import Navbar from "../components/Navbar";
 
-const page = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [products, setProducts] = useState([]);
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  images: string[];
+  category: {
+    name: string;
+  };
+}
+
+const Page = () => {
+
+  const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState("");
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
 
   useEffect(() => {
     axios
@@ -33,9 +38,8 @@ const page = () => {
     .filter((product) =>
       product.title.toLowerCase().includes(search.toLowerCase())
     )
-    .sort((a, b) => a.price - b.price);
-
-  const sanitizeUrl = (url) => {
+   
+  const sanitizeUrl = (url: string) => {
     if (url && typeof url === "string" && url.trim() !== "") {
       return url;
     }
@@ -44,7 +48,7 @@ const page = () => {
 
   return (
     <div className="sticky top-0 bg-white z-30 inset-x-0 border-b-2 border-gray-300">
-     <Navbar/>
+      <Navbar />
 
       <div className="flex flex-col items-center justify-center mt-8">
         <div className="text-center">
@@ -65,10 +69,13 @@ const page = () => {
           <div className="mt-5 max-w-6xl px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
               {filteredProducts.map((product) => (
-                <div key={product.id} className="rounded-lg flex flex-col items-center bg-white p-5">
+                <div
+                  key={product.id}
+                  className="rounded-lg flex flex-col items-center bg-white p-5"
+                >
                   <div className="relative w-full h-52 mb-4">
                     <Image
-                      src={sanitizeUrl(product.images?.[1])}
+                      src={sanitizeUrl(product.images?.[1]) || "/default-image.jpg"}
                       alt={product.title}
                       layout="fill"
                       style={{ objectFit: "cover" }}
@@ -92,4 +99,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Image from 'next/image'
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <Navbar/>
@@ -21,4 +21,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

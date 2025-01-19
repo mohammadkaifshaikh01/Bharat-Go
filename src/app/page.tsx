@@ -2,7 +2,7 @@ import Fetch from '@/app/components/Fetch'
 import Navbar from '@/app/components/Navbar'
 import React from 'react'
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <Navbar/>
@@ -11,4 +11,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
