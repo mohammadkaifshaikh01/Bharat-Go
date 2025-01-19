@@ -1,9 +1,9 @@
-"use client";
+  "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { FaShoppingCart } from "react-icons/fa";
+  import Link from "next/link";
+  import { useState } from "react";
+  import { GiHamburgerMenu } from "react-icons/gi";
+  import { FaShoppingCart } from "react-icons/fa";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,7 +20,7 @@ export default function Navbar() {
             {/* Left Section - Logo and Navbar Links */}
             <div className="flex items-center space-x-5">
               {/* Logo */}
-              <Link href="/page">
+              <Link href="/">
                 <h3 className="text-lg font-bold text-gray-700 cursor-pointer">
                   Shopi
                 </h3>
@@ -29,31 +29,31 @@ export default function Navbar() {
               {/* Navbar Links */}
               <nav className="hidden md:flex space-x-3 text-[11px] font-normal  ">
                 <Link
-                  href="/aboutus"
+                  href="/"
                   className="text-gray-600 hover:text-blue-500 uppercase"
                 >
                   All
                 </Link>
                 <Link
-                  href="/curriculum"
+                  href="/clothes"
                   className="text-gray-600 hover:text-blue-500 uppercase"
                 >
                   Clothes
                 </Link>
                 <Link
-                  href="/community"
+                  href="/electronics"
                   className="text-gray-600 hover:text-blue-500 uppercase"
                 >
                   Electronics
                 </Link>
                 <Link
-                  href="/offering"
+                  href="/furniture"
                   className="text-gray-600 hover:text-blue-500 uppercase"
                 >
                   Furniture
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/"
                   className="text-gray-600 hover:text-blue-500 uppercase"
                 >
                   Toys
@@ -65,13 +65,13 @@ export default function Navbar() {
             <div className="hidden md:flex items-center space-x-5 text-[12px] ml-auto font-normal">
               <p className="text-gray-400 text-[13px] ">userintheapp@test.com</p>
               <Link
-                href="/offering"
+                href="/order"
                 className="text-gray-600 hover:text-blue-500 uppercase"
               >
                 My Orders
               </Link>
               <Link
-                href="/contact"
+                href="/account"
                 className="text-gray-600 hover:text-blue-500 uppercase"
               >
                 My Account
@@ -96,42 +96,50 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden flex flex-col mt-3 space-y-2 text-sm">
+            <div className="md:hidden flex flex-col mt-3 space-y-2 text-sm text-center">
               <Link
-                href="/aboutus"
+                href="/"
                 className="text-gray-500 hover:text-blue-500 uppercase"
               >
-                About Us
+                All
               </Link>
               <Link
-                href="/curriculum"
+                href="/clothes"
                 className="text-gray-500 hover:text-blue-500 uppercase"
               >
-                Curriculum
+                Clothes
               </Link>
               <Link
-                href="/community"
+                href="/electronics"
                 className="text-gray-500 hover:text-blue-500 uppercase"
               >
-                Community
+                Electronics
               </Link>
               <Link
-                href="/offering"
+                href="/furniture"
                 className="text-gray-500 hover:text-blue-500 uppercase"
               >
-                Offering
+                Furniture
               </Link>
               <Link
-                href="/contact"
+                href="/toy"
                 className="text-gray-500 hover:text-blue-500 uppercase"
               >
-                Contact
+                Toy
               </Link>
-              <Link href="/login" className="w-full text-center">
-                <button className="bg-blue-500 text-white px-4 py-1.5 rounded-full transition hover:bg-blue-600">
-                  SIGN IN
-                </button>
+              <Link
+                href="/order"
+                className="text-gray-500 hover:text-blue-500 uppercase"
+              >
+                Orders
               </Link>
+              <Link
+                href="/account"
+                className="text-gray-500 hover:text-blue-500 uppercase"
+              >
+                Account
+              </Link>
+             
             </div>
           )}
         </div>

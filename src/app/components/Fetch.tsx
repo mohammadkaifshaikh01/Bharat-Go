@@ -23,6 +23,13 @@ const Fetch= () => {
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(search.toLowerCase())
   );
+  const sanitizeUrl = (url) => {
+    // Check if the URL is non-empty and a valid string
+    if (url && typeof url === 'string' && url.trim() !== '') {
+      return url; // Return the valid URL
+    }
+    return null; // Return null if URL is invalid or empty
+  };
 
   return (
     <div className="flex flex-col items-center justify-center mt-8">
@@ -52,13 +59,13 @@ const Fetch= () => {
               >
                 {/* Image */}
                 <div className="relative w-full h-52 mb-4 ">
-                  <Image
-                    src={product.images[1]}
-                    alt={product.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-2xl"
-                  />
+                <Image
+  src={sanitizeUrl(product.images?.[1]) || "/default-image.jpg"} // Use a fallback image if the URL is invalid or empty
+  alt={product.title}
+  layout="fill"
+  style={{ objectFit: "cover" }}
+  className="rounded-2xl"
+/>
                   <span className="absolute top-2 right-2 text-black bg-white p-2 rounded-full cursor-pointer">
                     <FaPlus />
                   </span>
