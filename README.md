@@ -26,13 +26,13 @@ To set up this project locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/fetch-product-list.git
+   git clone https://github.com/mohammadkaifshaikh01/Bharat-Go.git
    ```
 
 2. **Navigate to the project directory:**
 
    ```bash
-   cd fetch-product-list
+  cd Bharat-Go
    ```
 
 3. **Install dependencies:**
